@@ -1,0 +1,40 @@
+# lista = []
+# nome = "Dados_01.txt"
+# valor_cripto =99999
+# modulo = valor_cripto % 2
+# discritor = open(nome,"a")
+# frase = input("Digite: ")
+# new_frase = ''
+# for letra in frase:
+#     new_frase += chr(ord(letra)+modulo)
+# discritor.write(new_frase + "\n")
+
+# nome = "Dados_01.txt"
+# discritor = open(nome,"r")
+# new_frase = ''
+# for letra in discritor.read():
+#     new_frase += chr(ord(letra)-modulo)
+# print(new_frase)
+
+# nome = "Dados_01.txt"
+# valor_cripto = 99999
+# modulo = valor_cripto % 2
+# discritor = open(nome, "a")
+# frase = input("Digite: ")
+# new_frase = ''
+# for letra in frase:
+#     new_frase += chr((ord(letra)+ valor_cripto))
+
+for salto in range(0,127):
+    new_frase = ''
+    discritor = open('Dados_01.txt', 'r')
+    for l in discritor.read():
+        if ord(l)+salto > 127:
+            new_frase+=chr((ord(l)+salto)%127)
+        else:
+            new_frase+=chr((ord(l)+salto))
+    print(f'Tentativa [{salto}] : {new_frase}')
+    save = open('resultados_conferencia.txt','a')
+    save.write(new_frase)
+    save.close()
+    discritor.close()
